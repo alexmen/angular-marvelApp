@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Marvel App</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
+	</head>
+	<body data-ng-app="marvelApp">
+		<div id="header" class="header" ng-controller="HeaderController" ng-include="'views/header.html'"></div>
+		<div class="container">
+				<div ng-view></div>
+			</div>
+		<div  class="background_app">
+				<img src="images/background.jpg" alt="">
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="/node_modules/angular/angular.js"></script>
+		<script src="/node_modules/angular-route/angular-route.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controller.js"></script>
+		<script src="js/services.js"></script>
+
+	</body>
+</html>

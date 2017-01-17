@@ -1,0 +1,39 @@
+.background_app{
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+}
+.background_app img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+.container{
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 0;
+    min-height: 1024px;
+    height: auto !important;
+}
+.header{
+    z-index:2;
+    position:relative;
+}
+.card_app{
+    text-align: center;
+    border:none !important;
+    
+}
+.card_name_app{
+    font-size: x-small;
+}

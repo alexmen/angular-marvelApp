@@ -1,0 +1,19 @@
+<div class="row marvel">
+  <div ng-switch="comicsHero">
+    <div ng-switch-when="fail">
+          <span class="help-block">{{errorMsg}}</span>
+    </div>
+    <div ng-switch-when="success" class="">
+      <div class="row small-up-2 medium-up-4">
+      <div class="column" ng-repeat="comic in comics">
+        <div class="card card_app">
+            <img ng-src="{{comic.image}}" class="">
+         </div>
+        <div class="card-section" style="height: 175px">
+          <p class="card_name_app">{{comic.name}}</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

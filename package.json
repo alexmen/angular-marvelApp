@@ -1,0 +1,25 @@
+{
+  "name": "MarvelApp",
+  "version": "0.0.1",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "devDependencies": {
+    "angular": "^1.5.3",
+    "autoprefixer": "^6.3.6",
+    "font-awesome": "^4.5.0",
+    "gulp": "^3.9.1",
+    "gulp-jasmine": "^2.3.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-typescript": "^2.13.0",
+    "gulp-webserver": "^0.9.1",
+    "webpack": "^1.13.1",
+    "jquery": "1.5.1",
+    "angular-route": "^1.6.1",
+    "foundation-cli": "^2.1.0"
+  },
+  "dependencies": {
+    "gulp-install": "^0.6.0"
+  }
+}

@@ -1,0 +1,36 @@
+<div class="row" style="padding-top:20px;" >
+  <div ng-switch="searchHeroes">
+    <div id="form-control" class="medium-6 float-center">
+      <form ng-submit="processForm()">
+        <div class="input-group">
+          <input type="text" class="input-group-field" placeholder="Character Name" ng-model="formData.name" required>
+          <div class="input-group-button">
+            <input type="submit" class="button" value="Search your hero">
+          </div>
+        </div>
+        <div ng-switch-when="fail">
+            <div class="alert callout">
+              <p><i class="fi-alert"></i>{{errorMsg}}</p>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div ng-switch-when="success" class="">
+      <div class="row small-up-2 medium-up-5">
+      <div class="column" ng-repeat="hero in heroes">
+        <div class="card">
+            <a ng-href="{{hero.url}}" title="{{hero.name}}">
+                <img ng-src="{{ hero.image }}" alt="{{hero.name }}" class="">
+            </a>
+            <div class="card-section" style="height: 175px">
+              <h5>{{hero.name}}</h5>
+              <p>{{hero.description}}</p>
+            </div>
+        </div>
+      </div>
+      </div> 
+
+    </div>
+  </div>
+  <hr>
+</div>
