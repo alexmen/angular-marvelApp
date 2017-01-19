@@ -3,9 +3,9 @@ A simple SPA aplication with angular to test Marvel API.
 
 ## Quick start
 
-Install Node.js
-Run npm install
-Run gulp
++ Install Node.js
++ Run npm install
++ Run gulp
 
 
 ## Screenshots
