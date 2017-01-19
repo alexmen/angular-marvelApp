@@ -1,7 +1,7 @@
 
 A simple SPA aplication with angular to test Marvel API.
 
-Quick Start
+## Quick start
 
 Install Node.js
 Run npm install
