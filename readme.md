@@ -1,3 +1,13 @@
+
+A simple SPA aplication with angular to test Marvel API.
+
+Quick Start
+
+Install Node.js
+Run npm install
+Run gulp
+
+
 ## Screenshots
 
 ![web page screenshot](./images/webPage1.png?raw=true "web page")
