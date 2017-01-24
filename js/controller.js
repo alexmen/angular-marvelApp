@@ -1,141 +1,158 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('controllers', [])
-        .controller('HeaderController', ['$scope', '$location', function($scope, $location) {
+    angular
+        .module('controllers', [])
+        .controller('HeaderController', ['$scope', '$location', function ($scope, $location) {
             $scope.isActive = function (viewLocation) {
                 return viewLocation === $location.path();
             };
         }])
-        .controller('HeroesController', ['$scope', 'marvelApi', function($scope, marvelApi){
+        .controller('HeroesController', ['$scope', 'marvelApi', function ($scope, marvelApi) {
             $scope.processForm = {};
-            
-            $scope.processForm = function(){
+
+            $scope.processForm = function () {
                 $scope.heroes = [];
-            
+
                 marvelApi.getHeroes($scope.formData.name)
-                    .then(function(response){
-                        if(response){
+                    .then(function (response) {
+                        if (response) {
                             displayHeroes(response);
                         }
 
                         $scope.searchHeroes = 'success';
-                    }, function(response){
+                    }, function (response) {
                         $scope.errorMsg = response.message;
                         $scope.searchHeroes = 'fail';
                     });
-            
-                function displayHeroes (response) {
+
+                function displayHeroes(response) {
                     $scope.heroes = [];
-                    
-                    response.result.forEach(function(character){
+
+                    response.result.forEach(function (character) {
                         var temp = [];
                         temp.name = character.name,
-                        //temp.description = (character.description === '' ? 'No description.' :  character.description);
-                        temp.description = (character.description === '' ? 'No description.' : formatString(character.description));
- 
+                            //temp.description = (character.description === '' ? 'No description.' :  character.description);
+                            temp.description = (character.description === '' ? 'No description.' : formatString(character.description));
+
 
                         temp.url = "#!/hero/" + character.id;
                         temp.image = parseImage(character.thumbnail.path, character.thumbnail.extension, sizeImage.landscape_amazing);
 
-                    $scope.heroes.push(temp);
+                        $scope.heroes.push(temp);
                     });
                 }
             };
         }])
-        .controller('HeroInfoController', ['$scope', '$location', '$routeParams', 'marvelApi', 
-            function($scope, $location, $routeParams, marvelApi){
+        .controller('HeroInfoController', ['$scope', '$location', '$routeParams', 'marvelApi',
+            function ($scope, $location, $routeParams, marvelApi) {
                 var characterId = $routeParams.id;
                 $scope.hero = [];
 
                 marvelApi.getHero(characterId)
-                    .then(function(response){
+                    .then(function (response) {
                         var character = response.result[0];
-                        if(response){
+                        if (response) {
                             $scope.hero.name = character.name;
                             $scope.hero.description = character.description;
                             $scope.hero.image = parseImage(character.thumbnail.path, character.thumbnail.extension, sizeImage.default);
                         }
 
                         $scope.infoHero = 'success';
-                        $scope.tabs="tabComics";
-                    }, function(response){
+                        $scope.tabs = "tabComics";
+                    }, function (response) {
                         displayError(response.message);
 
                         $scope.errorMsg = response.message;
                         $scope.infoHero = 'fail';
-                    });  
+                    });
 
-                 $scope.showInfo = {};
-            
-            $scope.showInfo = function(){
-                $scope.tabs = "tabInfo";
-            };
-            $scope.showComics = function(){
-                $scope.tabs = "tabComics";
-            };  
-        }])
+                $scope.showInfo = {};
 
-        .controller('ComicsController', ['$scope', '$routeParams', 'marvelApi', 
-            function($scope, $routeParams, marvelApi){
+                $scope.showInfo = function () {
+                    $scope.tabs = "tabInfo";
+                };
+                $scope.showComics = function () {
+                    $scope.tabs = "tabComics";
+                };
+            }])
+
+        .controller('ComicsController', ['$scope', '$routeParams', 'marvelApi',
+            function ($scope, $routeParams, marvelApi) {
                 var characterId = $routeParams.id;
                 $scope.hero = [];
 
                 marvelApi.getComics(characterId)
-                    .then(function(response){
-                        if(response){
+                    .then(function (response) {
+                        if (response) {
                             displayComics(response);
                         }
 
                         $scope.comicsHero = 'success';
-                    }, function(response){
+                    }, function (response) {
                         $scope.errorMsg = response.message;
                         $scope.comicsHero = 'fail';
                     });
 
-                function displayComics (response) {
+                function displayComics(response) {
                     $scope.comics = [];
-                    
-                    response.result.forEach(function(comic){
+
+                    response.result.forEach(function (comic) {
                         var temp = [];
                         temp.name = comic.title,
-                        temp.image = parseImage(comic.thumbnail.path, comic.thumbnail.extension, sizeImage.portrait_small);
+                            temp.image = parseImage(comic.thumbnail.path, comic.thumbnail.extension, sizeImage.portrait_small);
 
-                    $scope.comics.push(temp);
+                        $scope.comics.push(temp);
                     });
                 }
-        }]);
-        
-        
+            }])
 
-        var sizeImage = {
-            small: 0,
-            portrait_small: 1,
-            xlarge: 2,
-            landscape_amazing: 3,
-            default: 4
-        };
-
-        var parseImage = function (path, extension, size) {
-            switch(size){
-                case sizeImage.small:
-                    return path + '/landscape_small.' + extension;
-                case sizeImage.xlarge:
-                    return path + '/landscape_xlarge.' + extension;
-                case sizeImage.landscape_amazing:
-                    return path + '/landscape_amazing.' + extension;
-                case sizeImage.portrait_small:
-                    return path + '/portrait_small.' + extension;
-                default:
-                    return path + '.' + extension;
+        .controller('BeerCounter', function ($scope, $locale) {
+            $scope.beers = [0, 1, 2, 3, 4, 5, 6];
+            if ($locale.id == 'en-us') {
+                $scope.beerForms = {
+                    0: 'no beers',
+                    one: '{} beer',
+                    other: '{} beers'
+                };
+            } else {
+                $scope.beerForms = {
+                    0: 'žiadne pivo',
+                    one: '{} pivo',
+                    few: '{} pivá',
+                    other: '{} pív'
+                };
             }
-        };
+        });
 
-        var formatString = function(stringToFormat){
-             if(stringToFormat.length > 50)
-                return stringToFormat.substring(0, 47) + "...";
-             
-             return stringToFormat;
+
+    var sizeImage = {
+        small: 0,
+        portrait_small: 1,
+        xlarge: 2,
+        landscape_amazing: 3,
+        default: 4
+    };
+
+    var parseImage = function (path, extension, size) {
+        switch (size) {
+            case sizeImage.small:
+                return path + '/landscape_small.' + extension;
+            case sizeImage.xlarge:
+                return path + '/landscape_xlarge.' + extension;
+            case sizeImage.landscape_amazing:
+                return path + '/landscape_amazing.' + extension;
+            case sizeImage.portrait_small:
+                return path + '/portrait_small.' + extension;
+            default:
+                return path + '.' + extension;
         }
+    };
+
+    var formatString = function (stringToFormat) {
+        if (stringToFormat.length > 50)
+            return stringToFormat.substring(0, 47) + "...";
+
+        return stringToFormat;
+    }
 })();

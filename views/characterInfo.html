@@ -1,32 +1,31 @@
 <div class="row" style="padding-top:20px">
-    <div ng-switch="infoHero">
-        <div ng-switch-when="fail">
-            <div class="alert callout">
-                <p><i class="fi-alert"></i>{{errorMsg}}</p>
-            </div>
-        </div>
-        <div ng-switch-when="success" class="row"> 
-            <div class="medium-6 columns">
-                <img ng-src="{{hero.image}}" alt="{{hero.name }}" class="thumbnail">
-            </div>
-            <div ng-switch="tabs" class="medium-6 columns">
-                <ul class="tabs">
-                    <li class="tabs-title"><a ng-click="showInfo()" aria-selected="true">Character info</a></li>
-                    <li class="tabs-title"><a ng-click="showComics">Comics</a></li>
-                </ul>
-                <div class="tabs-content" >
-                    <div ng-switch-when="tabInfo" id="panel1">
-                        <h4>Name:</h4><p>{{hero.name}}</p>
-                        <h4>Description:</h4><p>{{hero.description}}</p>
-                        <a href="{{hero.url}}" target="_blank" title="More Info">More Info</a>
-                    </div>
-                    <div  class="tabs-panel" id="panel2">
-                        <p>Comics</p>
-                        <div ng-controller="ComicsController" ng-include="'views/comics.html'"></div>
-                    </div>
-                </div>
-             </div>
+<div ng-switch="infoHero">
+    <div ng-switch-when="fail">
+        <div class="alert callout">
+            <p><i class="fi-alert"></i>{{errorMsg}}</p>
         </div>
     </div>
-    <a class="button" ng-href="#!/">Go Back</a>
+    <div ng-switch-when="success" class="row">
+        <div class="medium-6 columns">
+            <img ng-src="{{hero.image}}" alt="{{hero.name }}" class="thumbnail">
+        </div>
+        <div class="medium-6 columns">
+
+            <tabs>
+                <panel title="Character info">
+                    <h4>Name:</h4>
+                    <p>{{hero.name}}</p>
+                    <h4>Description:</h4>
+                    <p>{{hero.description}}</p>
+                    <a href="{{hero.url}}" target="_blank" title="More Info">More Info</a>
+                </panel>
+                <panel title="Comics">
+                    <p>Comics</p>
+                    <div ng-controller="ComicsController" ng-include="'views/comics.html'"></div>
+                </panel>
+            </tabs>
+        </div>
+    </div>
+</div>
+<a class="button" ng-href="#!/">Go Back</a>
 </div>
