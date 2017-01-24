@@ -4,8 +4,7 @@
 		.module('marvelApp', [
 			'ngRoute',
             'controllers',
-            'services',
-			'components'
+            'services'
 		])
 		.config(function ($routeProvider) {
   			$routeProvider
